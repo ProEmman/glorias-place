@@ -39,4 +39,16 @@
       }
     });
   }
+
+  // Without this, tapping a link doesn't close the full-screen panel — the
+  // page navigates/scrolls underneath, but the panel (position: fixed,
+  // covering the whole screen) keeps covering it, so it looks like nothing
+  // happened. Doesn't preventDefault, so the link's own navigation still
+  // proceeds as normal; closing just lets it become visible.
+  var navPanelLinks = navDisclosure.querySelectorAll(".nav-panel a");
+  navPanelLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      navDisclosure.open = false;
+    });
+  });
 })();
