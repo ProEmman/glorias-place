@@ -14,3 +14,29 @@
     input.checked = true;
   }
 })();
+
+(function () {
+  "use strict";
+
+  // The mobile nav is a plain <details>/<summary> disclosure, so it works
+  // with no JS at all. This just adds two enhancements: a visible close
+  // button (there's no native way to close a <details> other than
+  // re-clicking the summary) and a body-scroll lock while it's open.
+  var navDisclosure = document.querySelector(".nav-disclosure");
+  if (!navDisclosure) return;
+
+  navDisclosure.addEventListener("toggle", function () {
+    document.body.classList.toggle("nav-open", navDisclosure.open);
+  });
+
+  var navClose = navDisclosure.querySelector(".nav-panel__close");
+  var navToggle = navDisclosure.querySelector(".nav-toggle");
+  if (navClose) {
+    navClose.addEventListener("click", function () {
+      navDisclosure.open = false;
+      if (navToggle) {
+        navToggle.focus();
+      }
+    });
+  }
+})();

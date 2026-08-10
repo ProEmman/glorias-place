@@ -92,6 +92,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Set via JS while the full-screen mobile nav panel is open, so the page
+   behind it can't be scrolled. */
+body.nav-open {
+  overflow: hidden;
+}
+
 img,
 picture,
 svg,
