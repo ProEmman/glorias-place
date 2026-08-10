@@ -1,0 +1,823 @@
+/* ==========================================================================
+   Gloria's Place Childminding — CSS foundation
+   Vanilla CSS, mobile-first, no framework, no build step.
+   Brand: warm pink + teal, desaturated from a print flyer for screen use.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Fonts (Google Fonts)
+   Baloo 2   — friendly, rounded  → headings
+   Mulish    — clean, readable   → body copy
+   Loaded via <link rel="preconnect"> + <link rel="stylesheet"> in the HTML
+   <head> — see --font-heading / --font-body below.
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   Design tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand colours — desaturated for screen legibility */
+  --berry: #8e2a52; /* headings, strong text */
+  --teal: #2b7a8e; /* buttons, links, interactive — darkened from the flyer's
+                       #3e8fa8 so white button text clears WCAG AA (4.9:1) */
+  --teal-dark: #205d6c; /* hover/active state for teal */
+  --blush: #fbe4ec; /* section background tint — deepened for separation from --cream */
+  --berry-tint: #f5dce5; /* emphasis section background, deeper than --blush */
+  --cream: #fffbf7; /* page background */
+  --sun: #f2a93b; /* small accents only — badges, icons, underlines */
+  --ink: #2e2028; /* body text */
+  --error: #b3392a; /* form validation, desaturated warm red to match palette */
+
+  /* Neutral scale — tinted from --ink rather than pure grey */
+  --n-100: #f7f1f3; /* faint fills */
+  --n-200: #ede3e6; /* hairline borders on light bg */
+  --n-300: #dccdd2; /* default borders, dividers */
+  --n-400: #b8a0a8; /* disabled text, placeholders */
+  --n-500: #8c6b74; /* secondary/muted text on light bg */
+  --n-600: #5a424a; /* muted text needing stronger contrast */
+
+  /* Fluid type scale: clamp(min, preferred, max) */
+  --step--1: clamp(0.83rem, 0.8rem + 0.14vw, 0.9rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.4rem + 1vw, 2rem);
+  --step-3: clamp(2rem, 1.7rem + 1.5vw, 2.75rem);
+  --step-4: clamp(2.5rem, 2rem + 2.5vw, 3.75rem);
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Shadow — tinted warm-dark rather than pure black */
+  --shadow: 0 4px 16px rgba(46, 32, 40, 0.12);
+
+  /* Fonts */
+  --font-heading: "Baloo 2", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Mulish", "Segoe UI", system-ui, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Modern reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  line-height: 1.65;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: max(2px, 0.08em);
+  text-underline-offset: 0.15em;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Base typography
+   -------------------------------------------------------------------------- */
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: var(--berry);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--step-4);
+}
+
+h2 {
+  font-size: var(--step-3);
+}
+
+h3 {
+  font-size: var(--step-2);
+}
+
+h4 {
+  font-size: var(--step-1);
+}
+
+p {
+  max-width: 65ch;
+}
+
+/* Vertical rhythm — reset zeroes all margins, so restore spacing between
+   adjacent content blocks explicitly rather than via blanket margins. */
+p + p,
+p + ul,
+p + ol,
+ul + p {
+  margin-top: var(--space-4);
+}
+
+/* Tighter than paragraph-to-paragraph — copy should sit close to the
+   heading that introduces it. */
+h2 + p,
+h3 + p {
+  margin-top: var(--space-3);
+}
+
+/* Eyebrow labels sit flush against the heading that follows, not floating */
+.eyebrow + h1,
+.eyebrow + h2,
+.eyebrow + h3 {
+  margin-top: 0;
+}
+
+small {
+  font-size: var(--step--1);
+}
+
+a {
+  color: var(--teal);
+}
+
+a:hover {
+  color: var(--teal-dark);
+}
+
+strong,
+b {
+  font-weight: 700;
+}
+
+/* .prose — restores list styling inside content areas (the global
+   ul, ol { list-style: none } reset above is meant for nav, not copy).
+   Apply to the list itself (<ul class="prose">) or to a containing
+   element wrapping one or more lists. */
+.prose ul,
+.prose ol,
+ul.prose,
+ol.prose {
+  list-style: revert;
+  padding-left: var(--space-5);
+}
+
+.prose li + li {
+  margin-top: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility — visible focus ring
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--berry);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Skip-to-content link
+   -------------------------------------------------------------------------- */
+.skip {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 100;
+  background: var(--berry);
+  color: #fff;
+  padding: var(--space-3) var(--space-5);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip:focus {
+  top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Visually hidden (screen-reader only) content
+   -------------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Layout — container and section bands
+   -------------------------------------------------------------------------- */
+.wrap {
+  width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .wrap {
+    padding-inline: var(--space-6);
+  }
+}
+
+.band {
+  padding-block: var(--space-5);
+}
+
+@media (min-width: 960px) {
+  .band {
+    padding-block: var(--space-6);
+  }
+}
+
+/* The hero's own bottom padding plus the availability band's top padding
+   stack up with no divider between them (same cream background both
+   sides), so the card ends up much further from the CTA buttons above it
+   than it needs to be. Tighten both sides, plus the card's own heading-
+   to-content margin (its heading is visually-hidden, so that margin was
+   only ever adding dead space here, not separating visible content). */
+#top {
+  padding-bottom: var(--space-2);
+}
+
+#availability-section {
+  padding-top: var(--space-2);
+}
+
+#availability {
+  margin-top: var(--space-2);
+}
+
+/* Half-padding variant for sections that need less breathing room */
+.band--tight {
+  padding-block: var(--space-3);
+}
+
+@media (min-width: 960px) {
+  .band--tight {
+    padding-block: var(--space-4);
+  }
+}
+
+/* The trust strip sits directly under a wave divider too, so it needs less
+   top clearance than .band--tight's own default — bottom padding is left
+   as-is so the badges keep their usual space above the next divider. */
+#about {
+  padding-top: var(--space-2);
+}
+
+/* "What's included" sits directly under a wave divider, so it needs less
+   top clearance than a standard .band — bottom padding is left at the
+   .band default so the cards keep their usual space below them. */
+#included {
+  padding-top: var(--space-2);
+}
+
+/* Section content wrapper spacing — the gap between a section's heading
+   (or intro text) and the cards, grid, list or form beneath it.
+   Centralized here rather than repeated per-component in index.html so
+   every section reads the same intro-to-content distance.
+   .trust-list is excluded — its heading is visually-hidden, so this
+   margin would just be dead space on top of .band--tight's own padding. */
+.card-grid,
+.faq-list,
+.enquiry-form,
+.availability-card {
+  margin-top: var(--space-4);
+}
+
+.band--blush {
+  background: var(--blush);
+}
+
+.band--paper {
+  background: #fff;
+}
+
+.band--tint {
+  background: var(--berry-tint);
+}
+
+/* Hairline separator — use when two light bands sit adjacent and need a
+   visible seam instead of (or alongside) a background change. */
+.band--edge {
+  border-top: 1px solid var(--n-200);
+}
+
+/* Dark anchor band — one strong section per page. White/near-white text
+   throughout; .btn--ghost flips to a white outline for use on this bg. */
+.band--berry {
+  background: var(--berry);
+  color: #fff;
+}
+
+.band--berry h1,
+.band--berry h2,
+.band--berry h3,
+.band--berry h4 {
+  color: #fff;
+}
+
+.band--berry p,
+.band--berry li {
+  color: rgba(255, 255, 255, 0.9); /* near-white, softened for body copy */
+}
+
+.band--berry a {
+  color: #fff;
+}
+
+.band--berry .btn--ghost {
+  border-color: #fff;
+  color: #fff;
+}
+
+.band--berry .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Section dividers — soft wave shape between sections, echoing the
+   rounded, cloud-like shapes on the print flyer.
+   Each instance sets its own background (colour of the section above) and
+   path fill (colour of the section below) inline, since that pairing is
+   different every time — the shared .divider class only handles sizing
+   and position so no gap or stray line appears at the seam.
+   -------------------------------------------------------------------------- */
+.divider {
+  display: block;
+  width: 100%;
+  height: 60px;
+  margin: 0;
+}
+
+@media (max-width: 639.98px) {
+  .divider {
+    height: 30px;
+  }
+}
+
+/* This wave's path is mostly white, so at the shared 60px/30px height it
+   reads as extra blank space stacked on top of #included's own top
+   padding rather than as a seam. Shrink just this instance. */
+.divider--included {
+  height: 15px;
+}
+
+@media (max-width: 639.98px) {
+  .divider--included {
+    height: 8px;
+  }
+}
+
+/* This path's fill matches the footer background, so its own height reads
+   as extra dark space stacked on top of the footer's already-tight top
+   padding. Shrink just this instance so the wording sits higher. */
+.divider--footer {
+  height: 30px;
+}
+
+@media (max-width: 639.98px) {
+  .divider--footer {
+    height: 15px;
+  }
+}
+
+/* At the shared 60px/30px height this reads as extra blank space stacked
+   on top of #about's own top padding rather than as a seam. Shrink just
+   this instance. */
+.divider--about {
+  height: 15px;
+}
+
+@media (max-width: 639.98px) {
+  .divider--about {
+    height: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, transform 0.1s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff; /* verified 4.9:1 against --teal — passes WCAG AA */
+}
+
+.btn--primary:hover {
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+  color: #fff;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.btn--ghost:hover {
+  background: var(--blush);
+  color: var(--teal-dark);
+  border-color: var(--teal-dark);
+}
+
+.btn--wide {
+  display: flex;
+  width: 100%;
+}
+
+.btn--sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--step--1);
+}
+
+/* --------------------------------------------------------------------------
+   Cards
+   -------------------------------------------------------------------------- */
+
+/* .card-solid — saturated card for short, punchy content (e.g. the
+   "typical day" time cards). White text verified against both backgrounds:
+   --berry 8.1:1, --teal 4.9:1 — both clear WCAG AA. */
+.card-solid {
+  position: relative;
+  overflow: hidden;
+  background: var(--berry);
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.card-solid--teal {
+  background: var(--teal);
+}
+
+/* Compact variant — smaller padding for dense card rows (e.g. trust strip) */
+.card-solid--sm {
+  padding: var(--space-3);
+}
+
+/* Diagonal line texture, low-opacity, decorative only */
+.card-solid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.09) 0,
+    rgba(255, 255, 255, 0.09) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+  pointer-events: none;
+}
+
+/* Soft glow circle, top-right, partially overflowing the card edge */
+.card-solid::after {
+  content: "";
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  pointer-events: none;
+}
+
+.card-solid__content {
+  position: relative;
+  z-index: 1;
+}
+
+.card-solid__label {
+  display: block;
+  font-size: var(--step--1);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.card-solid__value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--step-1);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: var(--space-2);
+}
+
+.card-solid__note {
+  font-size: var(--step--1);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* --------------------------------------------------------------------------
+   Forms
+   -------------------------------------------------------------------------- */
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-1);
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: #fff;
+  border: 2px solid var(--n-300);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.4;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline-block;
+  width: auto;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0;
+  accent-color: var(--teal);
+}
+
+textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--n-500);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--n-400);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--teal);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: var(--n-100);
+  border-color: var(--n-200);
+  color: var(--n-400);
+  cursor: not-allowed;
+}
+
+.field.is-invalid input,
+.field.is-invalid select,
+.field.is-invalid textarea {
+  border-color: var(--error);
+}
+
+.form-error {
+  display: none;
+  margin-top: var(--space-2);
+  color: var(--error);
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.field.is-invalid .form-error {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding-top: 0;
+  padding-bottom: var(--space-6);
+}
+
+/* The tight desktop top padding above reads as cramped once columns stack
+   on a small screen, so give phones a bit more breathing room. */
+@media (max-width: 639.98px) {
+  .site-footer {
+    padding-top: var(--space-5);
+  }
+}
+
+.footer__inner {
+  display: grid;
+  align-items: start;
+  gap: var(--space-6) var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+/* Two columns below 700px, four above — see the 480px breakpoint below
+   for the single-column phone layout. */
+@media (min-width: 480px) {
+  .footer__inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 700px) {
+  .footer__inner {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+/* Footer-scoped recolour of the shared header logo lockup — a berry badge
+   nearly disappears against this dark background, so it flips to a white
+   badge with berry letters; the name goes white and the tagline drops to
+   the footer's muted text colour instead of teal. Markup/classes are the
+   same ones the header uses, just recoloured here. */
+.site-footer .logo {
+  margin-bottom: var(--space-2);
+}
+
+.site-footer .logo__mark {
+  background: #fff;
+  color: var(--berry);
+}
+
+.site-footer .logo__name {
+  color: #fff;
+}
+
+.site-footer .logo__tagline {
+  color: var(--n-400);
+}
+
+.site-footer address {
+  font-style: normal;
+  line-height: 1.4;
+}
+
+.footer__heading {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  color: var(--sun);
+  margin-bottom: var(--space-1);
+}
+
+.footer__col p,
+.footer__col li {
+  line-height: 1.4;
+}
+
+/* Links sit on the warm off-white side rather than the bright orange
+   reserved for .footer__heading labels and hover/focus state, and stay
+   underline-free until interacted with. */
+.site-footer a {
+  color: var(--n-200);
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--sun);
+  text-decoration: underline;
+}
+
+/* The global :focus-visible ring is --berry, which is only ~1.9:1 against
+   this footer's --ink background — nowhere near the 3:1 WCAG 1.4.11 needs
+   for a visible UI indicator. Swap it for --sun (7.8:1) here instead. */
+.site-footer a:focus-visible {
+  outline-color: var(--sun);
+}
+
+.footer__bottom {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: var(--step--1);
+  color: var(--n-400);
+}

@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gloria's Place Childminding | Registered Childminder in Dundee DD2</title>
+  <meta name="description" content="Gloria's Place Childminding is a Care Inspectorate registered childminder in Dundee DD2, offering warm, safe full-time, part-time, before/after school and holiday care for children aged 0–12.">
+  <link rel="canonical" href="https://example.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gloria's Place Childminding | Registered Childminder in Dundee DD2">
+  <meta property="og:description" content="Care Inspectorate registered childminder in Dundee DD2. Warm, safe care for ages 0–12, weekdays 7:30am–6:00pm.">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="https://example.com/img/og-image.jpg">
+  <meta property="og:locale" content="en_GB">
+
+  <!-- Fonts: Baloo 2 (headings) + Mulish (body) — see css/styles.css --font-heading / --font-body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- ChildCare structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ChildCare",
+    "name": "Gloria's Place Childminding",
+    "url": "https://example.com/",
+    "telephone": "+447823716600",
+    "email": "Gloriasplace25@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Dundee",
+      "postalCode": "DD2 2FE",
+      "addressCountry": "GB"
+    },
+    "areaServed": "Dundee",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "07:30",
+        "closes": "18:00"
+      }
+    ],
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Scottish Childminding Association (SCMA)"
+    }
+  }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       Page-specific CSS for index.html
+       Not yet in css/styles.css — move into the stylesheet once stable.
+       Uses only tokens/classes already defined in css/styles.css.
+       ========================================================================== */
+
+    /* --------------------------------------------------------------------------
+       Utility strip — thin bar above the main header
+       White text verified against --berry — 8.1:1, passes WCAG AA.
+       -------------------------------------------------------------------------- */
+    .utility-strip {
+      background: var(--berry);
+      color: #fff;
+    }
+
+    .utility-strip__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      height: 36px;
+      font-size: var(--step--1);
+    }
+
+    .utility-strip__hours {
+      white-space: nowrap;
+    }
+
+    .utility-strip__phone {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .utility-strip__phone:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 639.98px) {
+      .utility-strip {
+        display: none;
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       Sticky header + nav disclosure
+       -------------------------------------------------------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--n-200);
+    }
+
+    .site-header__inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: var(--space-4);
+      padding-block: var(--space-3);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .logo__mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--berry);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--step-0);
+    }
+
+    .logo__lockup {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo__name {
+      font-family: var(--font-heading);
+      font-size: var(--step-1);
+      font-weight: 700;
+      color: var(--berry);
+    }
+
+    .logo__tagline {
+      font-size: var(--step--1);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+    }
+
+    .site-nav {
+      justify-self: center;
+    }
+
+    .site-header__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      justify-self: end;
+      flex-shrink: 0;
+    }
+
+    /* Below 900px only "Arrange a visit" stays visible in the header —
+       "Call us" and "Ask a question" move into the hamburger menu
+       (.nav-actions) instead, and calling is also available via the
+       sticky mobile bar. */
+    @media (max-width: 899.98px) {
+      .nav-call,
+      .nav-question {
+        display: none;
+      }
+    }
+
+    /* Mobile nav uses <details>/<summary> as a no-JS accessible disclosure */
+    .nav-disclosure {
+      position: relative;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      list-style: none;
+      cursor: pointer;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .nav-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    .nav-toggle__bars,
+    .nav-toggle__bars::before,
+    .nav-toggle__bars::after {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+    }
+
+    .nav-toggle__bars {
+      position: relative;
+    }
+
+    .nav-toggle__bars::before,
+    .nav-toggle__bars::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-toggle__bars::before {
+      top: -7px;
+    }
+
+    .nav-toggle__bars::after {
+      top: 7px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      padding: var(--space-3) 0 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: var(--space-2) var(--space-3);
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--ink);
+      border-radius: var(--radius-sm);
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+      background: var(--blush);
+    }
+
+    /* Duplicate CTAs shown only inside the open hamburger menu, below
+       900px, so "Call us" and "Ask a question" aren't lost on mobile. */
+    .nav-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-top: var(--space-2);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--n-200);
+    }
+
+    @media (min-width: 900px) {
+      .nav-toggle {
+        display: none;
+      }
+
+      /* Overrides the browser's default "hide non-summary content of a
+         closed <details>" behaviour so the nav stays a normal horizontal
+         row on wider screens regardless of the details' open state. */
+      .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        gap: var(--space-3);
+        padding: 0;
+      }
+
+      .nav-links a {
+        padding: var(--space-2) 0;
+      }
+
+      /* The real buttons live in .site-header__actions on desktop, so
+         keep this duplicate hidden regardless of the details' state. */
+      .nav-actions {
+        display: none !important;
+      }
+    }
+
+    /* Header gets crowded with logo + nav + three buttons in this range —
+       widen the nav-link gap back out once there's more room to spare. */
+    @media (min-width: 1100px) {
+      .nav-links {
+        gap: var(--space-5);
+      }
+    }
+
+    .nav-cta {
+      flex-shrink: 0;
+    }
+
+    /* --------------------------------------------------------------------------
+       Hero
+       -------------------------------------------------------------------------- */
+    .hero__inner {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 760px) {
+      .hero__inner {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+      }
+    }
+
+    .eyebrow {
+      font-size: var(--step--1);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      margin-bottom: var(--space-3);
+    }
+
+    .hero__hours {
+      font-size: var(--step-1);
+      color: var(--ink);
+      margin-top: var(--space-3);
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    .hero__media {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+    .hero__photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--radius-lg);
+    }
+
+    /* --------------------------------------------------------------------------
+       Availability card
+       -------------------------------------------------------------------------- */
+    .availability-card {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      background: #fff;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      padding: var(--space-4) var(--space-5);
+      flex-wrap: wrap;
+    }
+
+    .availability-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .availability-updated {
+      color: var(--n-500);
+      font-size: var(--step--1);
+      width: 100%;
+    }
+
+    /* --------------------------------------------------------------------------
+       Trust strip
+       -------------------------------------------------------------------------- */
+    .trust-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 900px) {
+      .trust-list {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    /* .trust-item just stretches the grid cell; its .card-solid__content
+       (flex, see below) holds the actual icon + label arrangement so that
+       content still centres correctly if a sibling card grows taller. */
+    .trust-item {
+      display: flex;
+    }
+
+    .trust-item .card-solid__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+      text-align: left;
+      width: 100%;
+    }
+
+    @media (min-width: 900px) {
+      .trust-item .card-solid__content {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .trust-item__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      font-size: 1rem;
+      line-height: 1;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .trust-item__label {
+      font-family: var(--font-heading);
+      font-size: var(--step--1);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* --------------------------------------------------------------------------
+       What's included cards
+       -------------------------------------------------------------------------- */
+    .card-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 640px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      padding: var(--space-5);
+    }
+
+    /* .card-solid already matches .card's border-radius/padding — add the
+       same shadow so solid and plain cards read as one consistent grid. */
+    .card-grid .card-solid {
+      box-shadow: var(--shadow);
+    }
+
+    /* --------------------------------------------------------------------------
+       Get in touch + FAQ — single band, two columns at 1024px+
+       -------------------------------------------------------------------------- */
+    .contact-faq {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .contact-faq__form,
+    .contact-faq__faq {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 639.98px) {
+      .contact-faq__form,
+      .contact-faq__faq {
+        padding: var(--space-4);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .contact-faq {
+        /* Form gets slightly more room than the FAQ column for its fields */
+        grid-template-columns: 1.2fr 1fr;
+        /* Stretch (not start) so both cards match height */
+        align-items: stretch;
+      }
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--n-200);
+      padding-block: var(--space-4);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      list-style: none;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      color: var(--berry);
+      font-weight: 600;
+      font-size: var(--step-1);
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: var(--step-2);
+      color: var(--teal);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after {
+      content: "\2212";
+    }
+
+    .faq-item p {
+      margin-top: var(--space-3);
+    }
+
+    .enquiry-form {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .enquiry-form textarea {
+      min-height: 5.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .enquiry-form {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .field--full,
+      .enquiry-submit {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .field-optional {
+      font-weight: 400;
+      color: var(--n-500);
+    }
+
+    /* "What can I help with?" chips — real radio inputs, visually hidden
+       (not display:none, so they stay focusable) with the adjacent label
+       styled as the tappable chip. */
+    .field--intent {
+      border: 0;
+      padding: 0;
+      min-width: 0;
+    }
+
+    .field--intent legend {
+      display: block;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: var(--space-1);
+      padding: 0;
+    }
+
+    .intent-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .intent-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-2) var(--space-4);
+      border: 2px solid var(--n-300);
+      border-radius: var(--radius-md);
+      margin-bottom: 0;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .intent-chip:hover {
+      border-color: var(--teal);
+    }
+
+    .intent-input:checked + .intent-chip {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #fff;
+    }
+
+    .intent-input:focus-visible + .intent-chip {
+      outline: 3px solid var(--berry);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    .field--checkbox {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    /* Nudge the checkbox down from the top of the flex line so it aligns
+       with the cap-height of the label's first line, not the line box. */
+    .field--checkbox input[type="checkbox"] {
+      margin-top: 0.2em;
+      flex-shrink: 0;
+    }
+
+    .field--checkbox label {
+      display: inline;
+      margin-bottom: 0;
+      /* flex-basis: 0 (not auto) — with auto, the flex algorithm sizes this
+         item by its full unwrapped sentence width for line-fitting, which
+         is wider than the field, so it wraps below the checkbox entirely
+         before shrinking ever applies. 0 lets it size purely from grow. */
+      flex: 1 1 0%;
+    }
+
+    .field--checkbox .form-error {
+      flex-basis: 100%;
+    }
+
+    /* Footer styles now live in css/styles.css — shared with privacy.html. */
+
+    /* --------------------------------------------------------------------------
+       Sticky mobile action bar
+       -------------------------------------------------------------------------- */
+    .mobile-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      display: flex;
+      box-shadow: var(--shadow);
+      border-top: 1px solid var(--n-200);
+    }
+
+    .mobile-bar__link {
+      flex: 1 1 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .mobile-bar__link--call {
+      background: var(--teal);
+    }
+
+    .mobile-bar__link--enquire {
+      background: var(--berry);
+    }
+
+    @media (min-width: 760px) {
+      .mobile-bar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 759.98px) {
+      body {
+        padding-bottom: 4.25rem;
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       Background watermark — large "GP" monogram, fixed behind all content.
+       inset: 0 + overflow: hidden keeps the container pinned to the exact
+       viewport box, so the oversized 55vw text can never widen the page's
+       scrollable area, however wide the glyphs render.
+       -------------------------------------------------------------------------- */
+    .watermark {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .watermark__text {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 55vw;
+      line-height: 1;
+      white-space: nowrap;
+      color: var(--berry);
+      opacity: 0.025;
+    }
+
+    /* Solid section backgrounds sit above the watermark in paint order and
+       hide it completely, so the light bands below are let down to ~80%
+       opacity. Scoped to index.html only (privacy.html reuses .band--paper
+       and has no watermark). Cards, form fields and the footer are left
+       untouched — they stay fully opaque. */
+    #about.band--blush,
+    #enquiry.band--blush {
+      background: rgba(251, 228, 236, 0.8); /* --blush at 80% */
+    }
+
+    #included.band--paper {
+      background: rgba(255, 255, 255, 0.8); /* #fff at 80% */
+    }
+  </style>
+</head>
+<body>
+  <div class="watermark" aria-hidden="true">
+    <span class="watermark__text">GP</span>
+  </div>
+
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <!-- ==========================================================================
+       Utility strip
+       ========================================================================== -->
+  <div class="utility-strip">
+    <div class="wrap utility-strip__inner">
+      <p class="utility-strip__hours">Weekdays 7:30am – 6:00pm</p>
+      <a class="utility-strip__phone" href="tel:07823716600">
+        <span aria-hidden="true">&#128222;</span> 07823 716600
+      </a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Header
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="logo" href="#top">
+        <span class="logo__mark" aria-hidden="true">GP</span>
+        <span class="logo__lockup">
+          <span class="logo__name">Gloria's Place</span>
+          <span class="logo__tagline">Childminding · Dundee</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <details class="nav-disclosure">
+          <summary class="nav-toggle" aria-label="Menu">
+            <span class="nav-toggle__bars" aria-hidden="true"></span>
+            Menu
+          </summary>
+          <ul class="nav-links">
+            <li><a href="#top">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#included">What's included</a></li>
+            <li><a href="#faq">Questions</a></li>
+            <li><a href="#enquiry">Contact</a></li>
+          </ul>
+          <div class="nav-actions">
+            <a class="btn btn--ghost btn--wide" href="tel:07823716600">Call us</a>
+            <a class="btn btn--ghost btn--wide" href="?intent=question#enquiry">Ask a question</a>
+            <a class="btn btn--primary btn--wide" href="?intent=visit#enquiry">Arrange a visit</a>
+          </div>
+        </details>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="btn btn--ghost btn--sm nav-call" href="tel:07823716600">Call us</a>
+        <a class="btn btn--ghost btn--sm nav-question" href="?intent=question#enquiry">Ask a question</a>
+        <a class="btn btn--primary btn--sm nav-cta" href="?intent=visit#enquiry">Arrange a visit</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ==========================================================================
+         Hero
+         ========================================================================== -->
+    <section class="hero band" id="top">
+      <div class="wrap hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow">Registered childminder · Dundee DD2</p>
+          <h1>Warm, safe childminding for children aged 0–12</h1>
+          <p class="hero__hours">Weekdays, 7:30am – 6:00pm</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="?intent=visit#enquiry">Arrange a visit</a>
+            <a class="btn btn--ghost" href="tel:07823716600">Call 07823 716600</a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <!-- TODO: temporary stand-in — replace with a real photo of the setting -->
+          <img
+            class="hero__photo"
+            src="img/flyer.jpg"
+            width="3712"
+            height="5250"
+            loading="eager"
+            alt="Gloria's Place Childminding flyer showing services and contact details"
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Availability
+         ========================================================================== -->
+    <section class="band" id="availability-section">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="availability-heading">Current availability</h2>
+        <div id="availability" class="availability-card" role="status" aria-live="polite" aria-labelledby="availability-heading">
+          <span class="availability-dot" aria-hidden="true"></span>
+          <p><strong>Accepting enquiries</strong> for full-time, part-time and before/after school places.</p>
+          <p class="availability-updated">Last updated: <time datetime="2026-08-01">1 August 2026</time></p>
+        </div>
+      </div>
+    </section>
+
+    <svg class="divider divider--about" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" style="background-color: var(--cream);">
+      <path d="M0,32 C480,26 960,20 1440,24 L1440,60 L0,60 Z" style="fill: var(--blush);"></path>
+    </svg>
+
+    <!-- ==========================================================================
+         Trust strip
+         ========================================================================== -->
+    <section class="band band--tight band--blush" id="about" aria-label="Accreditations and checks">
+      <div class="wrap">
+        <h2 class="visually-hidden">Accreditations and checks</h2>
+        <ul class="trust-list">
+          <li class="trust-item card-solid card-solid--sm card-solid--teal">
+            <div class="card-solid__content">
+              <span class="trust-item__icon" aria-hidden="true">&#10003;</span>
+              <strong class="trust-item__label">Care Inspectorate registered</strong>
+            </div>
+            <!-- TODO: insert the actual Care Inspectorate registration/CS number once confirmed -->
+          </li>
+          <li class="trust-item card-solid card-solid--sm">
+            <div class="card-solid__content">
+              <span class="trust-item__icon" aria-hidden="true">&#10003;</span>
+              <strong class="trust-item__label">SCMA member</strong>
+            </div>
+          </li>
+          <li class="trust-item card-solid card-solid--sm">
+            <div class="card-solid__content">
+              <span class="trust-item__icon" aria-hidden="true">&#10003;</span>
+              <strong class="trust-item__label">PVG checked</strong>
+            </div>
+          </li>
+          <li class="trust-item card-solid card-solid--sm">
+            <div class="card-solid__content">
+              <span class="trust-item__icon" aria-hidden="true">&#10003;</span>
+              <strong class="trust-item__label">First aid trained</strong>
+            </div>
+          </li>
+          <li class="trust-item card-solid card-solid--sm">
+            <div class="card-solid__content">
+              <span class="trust-item__icon" aria-hidden="true">&#10003;</span>
+              <strong class="trust-item__label">Fully insured</strong>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <svg class="divider divider--included" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" style="background-color: var(--blush);">
+      <path d="M0,24 C360,48 1080,0 1440,24 L1440,60 L0,60 Z" style="fill: #fff;"></path>
+    </svg>
+
+    <!-- ==========================================================================
+         What's included
+         ========================================================================== -->
+    <section class="band band--paper" id="included">
+      <div class="wrap">
+        <h2>What's included</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Full-time &amp; part-time care</h3>
+            <p>Flexible sessions built around your family's routine.</p>
+          </article>
+          <article class="card-solid card-solid--teal">
+            <div class="card-solid__content">
+              <h3 class="card-solid__value">Before &amp; after school care</h3>
+              <p class="card-solid__note">Reliable school runs and a settled start and end to the day.</p>
+            </div>
+          </article>
+          <article class="card-solid">
+            <div class="card-solid__content">
+              <h3 class="card-solid__value">School holiday care</h3>
+              <p class="card-solid__note">Fun, structured days during school holidays.</p>
+            </div>
+          </article>
+          <article class="card-solid">
+            <div class="card-solid__content">
+              <h3 class="card-solid__value">Funded child places</h3>
+              <p class="card-solid__note">Funded places available — get in touch to check eligibility.</p>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Home-cooked meals &amp; healthy snacks</h3>
+            <p>Nutritious, home-cooked food included every day.</p>
+          </article>
+          <article class="card">
+            <h3>Outdoor play, art, craft &amp; educational activities</h3>
+            <p>Local outings and activities that support learning through play.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: testimonials or about section goes here once content is available -->
+
+    <!-- ==========================================================================
+         Get in touch + FAQ
+         ========================================================================== -->
+    <section class="band band--blush" id="enquiry">
+      <div class="wrap contact-faq">
+        <div class="contact-faq__form">
+          <h2>Get in touch</h2>
+          <p>Fill in the form and I'll get back to you to arrange a visit or answer any questions.</p>
+
+          <form class="enquiry-form" action="#" method="post" novalidate>
+            <fieldset class="field field--full field--intent">
+              <legend>What can I help with?</legend>
+              <div class="intent-choices">
+                <input type="radio" id="intent-visit" name="intent" value="visit" class="visually-hidden intent-input" checked>
+                <label for="intent-visit" class="intent-chip">Arrange a visit</label>
+
+                <input type="radio" id="intent-question" name="intent" value="question" class="visually-hidden intent-input">
+                <label for="intent-question" class="intent-chip">Ask a question</label>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="parent-name">Your name</label>
+              <input type="text" id="parent-name" name="parent-name" autocomplete="name" aria-describedby="parent-name-error" required>
+              <span class="form-error" id="parent-name-error">Please enter your name.</span>
+            </div>
+
+            <div class="field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" autocomplete="email" aria-describedby="email-error" required>
+              <span class="form-error" id="email-error">Please enter a valid email address.</span>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone number <span class="field-optional">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-error">
+              <span class="form-error" id="phone-error">Please enter a valid phone number.</span>
+            </div>
+
+            <div class="field">
+              <label for="child-age">Child's age</label>
+              <select id="child-age" name="child-age" aria-describedby="child-age-error" required>
+                <option value="">Select an age</option>
+                <option value="under-1">Under 1</option>
+                <option value="1-2">1–2 years</option>
+                <option value="3-4">3–4 years</option>
+                <option value="5-7">5–7 years</option>
+                <option value="8-12">8–12 years</option>
+              </select>
+              <span class="form-error" id="child-age-error">Please select your child's age.</span>
+            </div>
+
+            <div class="field field--full">
+              <label for="days-hours">Days &amp; hours needed</label>
+              <input type="text" id="days-hours" name="days-hours" placeholder="Mon, Wed, Fri — 8am to 5pm" aria-describedby="days-hours-error" required>
+              <span class="form-error" id="days-hours-error">Please let us know the days and hours you need.</span>
+            </div>
+
+            <div class="field field--full">
+              <label for="message">Message <span class="field-optional">(optional)</span></label>
+              <textarea id="message" name="message" aria-describedby="message-error"></textarea>
+              <span class="form-error" id="message-error">There's a problem with your message.</span>
+            </div>
+
+            <div class="field field--checkbox field--full">
+              <input type="checkbox" id="consent" name="consent" aria-describedby="consent-error" required>
+              <label for="consent">I consent to Gloria's Place Childminding storing my details to respond to this enquiry.</label>
+              <span class="form-error" id="consent-error">Please confirm consent to continue.</span>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--wide enquiry-submit">Send enquiry</button>
+          </form>
+        </div>
+
+        <div class="contact-faq__faq" id="faq">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>What ages do you care for?</summary>
+              <p>I care for children aged 0–12, including before and after school care and school holiday care.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Are you Care Inspectorate registered?</summary>
+              <p>Yes — I'm registered with the Care Inspectorate, a member of the Scottish Childminding Association (SCMA), PVG checked, first aid trained and fully insured.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Do you offer funded places?</summary>
+              <p>Yes, funded child places are available — get in touch to check current availability for your child's age group.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What are your opening hours?</summary>
+              <p>I'm open weekdays from 7:30am to 6:00pm, offering full-time and part-time care.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Do you provide meals?</summary>
+              <p>Yes, home-cooked meals and healthy snacks are included, alongside outdoor play, local outings, and art, craft and educational activities.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <svg class="divider divider--footer" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" style="background-color: var(--blush);">
+    <path d="M0,32 C480,26 960,20 1440,24 L1440,60 L0,60 Z" style="fill: var(--ink);"></path>
+  </svg>
+
+  <!-- ==========================================================================
+       Footer
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="wrap footer__inner">
+      <div class="footer__col">
+        <div class="logo">
+          <span class="logo__mark" aria-hidden="true">GP</span>
+          <span class="logo__lockup">
+            <span class="logo__name">Gloria's Place</span>
+            <span class="logo__tagline">Childminding · Dundee</span>
+          </span>
+        </div>
+        <address>
+          Dundee, DD2 2FE<br>
+          <a href="tel:07823716600">07823 716600</a><br>
+          <a href="mailto:Gloriasplace25@gmail.com">Gloriasplace25@gmail.com</a>
+        </address>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Pages</p>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#enquiry">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Registration</p>
+        <ul>
+          <li>Care Inspectorate registered</li>
+          <li>SCMA member</li>
+          <li>PVG checked</li>
+          <li>First aid trained</li>
+          <li>Fully insured</li>
+        </ul>
+        <!-- TODO: insert the actual Care Inspectorate registration/CS number here once confirmed -->
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Documents</p>
+        <ul>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <!-- TODO: build terms.html — placeholder link until the page exists -->
+          <li><a href="#">Terms &amp; conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wrap footer__bottom">
+      <p>&copy; 2026 Gloria's Place Childminding. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Sticky mobile action bar
+       ========================================================================== -->
+  <div class="mobile-bar">
+    <a class="mobile-bar__link mobile-bar__link--call" href="tel:07823716600">
+      <span aria-hidden="true">&#128222;</span> Call
+    </a>
+    <a class="mobile-bar__link mobile-bar__link--enquire" href="?intent=question#enquiry">
+      <span aria-hidden="true">&#9993;</span> Enquire
+    </a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Notice | Gloria's Place Childminding</title>
+  <meta name="description" content="Privacy notice for Gloria's Place Childminding — what information this website collects through the enquiry form, why, how long it's kept, and your rights under UK GDPR.">
+  <link rel="canonical" href="https://example.com/privacy.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Privacy Notice | Gloria's Place Childminding">
+  <meta property="og:description" content="What information this website collects through the enquiry form, why, how long it's kept, and your rights under UK GDPR.">
+  <meta property="og:url" content="https://example.com/privacy.html">
+  <meta property="og:image" content="https://example.com/img/og-image.jpg">
+  <meta property="og:locale" content="en_GB">
+
+  <!-- Fonts: Baloo 2 (headings) + Mulish (body) — see css/styles.css --font-heading / --font-body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* ==========================================================================
+       Page-specific CSS for privacy.html
+       Shared chrome rules copied verbatim from index.html so the header,
+       nav, footer and mobile bar match exactly. Not yet in css/styles.css —
+       move into the stylesheet once stable (see index.html's own note).
+       ========================================================================== */
+
+    /* --------------------------------------------------------------------------
+       Utility strip — thin bar above the main header
+       White text verified against --berry — 8.1:1, passes WCAG AA.
+       -------------------------------------------------------------------------- */
+    .utility-strip {
+      background: var(--berry);
+      color: #fff;
+    }
+
+    .utility-strip__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      height: 36px;
+      font-size: var(--step--1);
+    }
+
+    .utility-strip__hours {
+      white-space: nowrap;
+    }
+
+    .utility-strip__phone {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .utility-strip__phone:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 639.98px) {
+      .utility-strip {
+        display: none;
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       Sticky header + nav disclosure
+       -------------------------------------------------------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--n-200);
+    }
+
+    .site-header__inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: var(--space-4);
+      padding-block: var(--space-3);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .logo__mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--berry);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--step-0);
+    }
+
+    .logo__lockup {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo__name {
+      font-family: var(--font-heading);
+      font-size: var(--step-1);
+      font-weight: 700;
+      color: var(--berry);
+    }
+
+    .logo__tagline {
+      font-size: var(--step--1);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+    }
+
+    .site-nav {
+      justify-self: center;
+    }
+
+    .site-header__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      justify-self: end;
+      flex-shrink: 0;
+    }
+
+    /* Below 900px only "Arrange a visit" stays visible in the header —
+       "Call us" and "Ask a question" move into the hamburger menu
+       (.nav-actions) instead, and calling is also available via the
+       sticky mobile bar. */
+    @media (max-width: 899.98px) {
+      .nav-call,
+      .nav-question {
+        display: none;
+      }
+    }
+
+    /* Mobile nav uses <details>/<summary> as a no-JS accessible disclosure */
+    .nav-disclosure {
+      position: relative;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      list-style: none;
+      cursor: pointer;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .nav-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    .nav-toggle__bars,
+    .nav-toggle__bars::before,
+    .nav-toggle__bars::after {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+    }
+
+    .nav-toggle__bars {
+      position: relative;
+    }
+
+    .nav-toggle__bars::before,
+    .nav-toggle__bars::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-toggle__bars::before {
+      top: -7px;
+    }
+
+    .nav-toggle__bars::after {
+      top: 7px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      padding: var(--space-3) 0 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: var(--space-2) var(--space-3);
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--ink);
+      border-radius: var(--radius-sm);
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+      background: var(--blush);
+    }
+
+    /* Duplicate CTAs shown only inside the open hamburger menu, below
+       900px, so "Call us" and "Ask a question" aren't lost on mobile. */
+    .nav-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-top: var(--space-2);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--n-200);
+    }
+
+    @media (min-width: 900px) {
+      .nav-toggle {
+        display: none;
+      }
+
+      /* Overrides the browser's default "hide non-summary content of a
+         closed <details>" behaviour so the nav stays a normal horizontal
+         row on wider screens regardless of the details' open state. */
+      .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        gap: var(--space-3);
+        padding: 0;
+      }
+
+      .nav-links a {
+        padding: var(--space-2) 0;
+      }
+
+      /* The real buttons live in .site-header__actions on desktop, so
+         keep this duplicate hidden regardless of the details' state. */
+      .nav-actions {
+        display: none !important;
+      }
+    }
+
+    /* Header gets crowded with logo + nav + three buttons in this range —
+       widen the nav-link gap back out once there's more room to spare. */
+    @media (min-width: 1100px) {
+      .nav-links {
+        gap: var(--space-5);
+      }
+    }
+
+    .nav-cta {
+      flex-shrink: 0;
+    }
+
+    /* Footer styles now live in css/styles.css — shared with index.html. */
+
+    /* --------------------------------------------------------------------------
+       Sticky mobile action bar
+       -------------------------------------------------------------------------- */
+    .mobile-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      display: flex;
+      box-shadow: var(--shadow);
+      border-top: 1px solid var(--n-200);
+    }
+
+    .mobile-bar__link {
+      flex: 1 1 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .mobile-bar__link--call {
+      background: var(--teal);
+    }
+
+    .mobile-bar__link--enquire {
+      background: var(--berry);
+    }
+
+    @media (min-width: 760px) {
+      .mobile-bar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 759.98px) {
+      body {
+        padding-bottom: 4.25rem;
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       Privacy notice content
+       -------------------------------------------------------------------------- */
+    .legal-intro h1 {
+      margin-bottom: var(--space-3);
+    }
+
+    .legal-intro .updated {
+      color: var(--n-500);
+      font-size: var(--step--1);
+    }
+
+    .legal-section + .legal-section {
+      margin-top: var(--space-6);
+    }
+
+    .legal-section h2 {
+      margin-bottom: var(--space-3);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <!-- ==========================================================================
+       Utility strip
+       ========================================================================== -->
+  <div class="utility-strip">
+    <div class="wrap utility-strip__inner">
+      <p class="utility-strip__hours">Weekdays 7:30am – 6:00pm</p>
+      <a class="utility-strip__phone" href="tel:07823716600">
+        <span aria-hidden="true">&#128222;</span> 07823 716600
+      </a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Header
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="logo" href="index.html">
+        <span class="logo__mark" aria-hidden="true">GP</span>
+        <span class="logo__lockup">
+          <span class="logo__name">Gloria's Place</span>
+          <span class="logo__tagline">Childminding · Dundee</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <details class="nav-disclosure">
+          <summary class="nav-toggle" aria-label="Menu">
+            <span class="nav-toggle__bars" aria-hidden="true"></span>
+            Menu
+          </summary>
+          <ul class="nav-links">
+            <li><a href="index.html#top">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#included">What's included</a></li>
+            <li><a href="index.html#faq">Questions</a></li>
+            <li><a href="index.html#enquiry">Contact</a></li>
+          </ul>
+          <div class="nav-actions">
+            <a class="btn btn--ghost btn--wide" href="tel:07823716600">Call us</a>
+            <a class="btn btn--ghost btn--wide" href="index.html?intent=question#enquiry">Ask a question</a>
+            <a class="btn btn--primary btn--wide" href="index.html?intent=visit#enquiry">Arrange a visit</a>
+          </div>
+        </details>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="btn btn--ghost btn--sm nav-call" href="tel:07823716600">Call us</a>
+        <a class="btn btn--ghost btn--sm nav-question" href="index.html?intent=question#enquiry">Ask a question</a>
+        <a class="btn btn--primary btn--sm nav-cta" href="index.html?intent=visit#enquiry">Arrange a visit</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ==========================================================================
+         Privacy notice
+         ========================================================================== -->
+    <section class="band">
+      <div class="wrap legal-intro">
+        <h1>Privacy notice</h1>
+        <p>This page explains, in plain English, what happens to the information you share with Gloria's Place Childminding through this website.</p>
+        <!-- TODO: keep this date in sync whenever the notice below changes -->
+        <p class="updated">Last updated: <time datetime="2026-08-09">9 August 2026</time></p>
+      </div>
+    </section>
+
+    <section class="band band--paper">
+      <div class="wrap prose">
+
+        <div class="legal-section">
+          <h2>Who we are</h2>
+          <p>Gloria's Place Childminding is run by Gloria, a registered childminder based in Dundee, DD2 2FE.</p>
+          <p>If you have any questions about this notice, or about any information we hold about you, please get in touch:</p>
+          <ul>
+            <li>Phone: <a href="tel:07823716600">07823 716600</a></li>
+            <li>Email: <a href="mailto:Gloriasplace25@gmail.com">Gloriasplace25@gmail.com</a></li>
+            <li>Address: Dundee, DD2 2FE</li>
+          </ul>
+        </div>
+
+        <div class="legal-section">
+          <h2>What information this website collects</h2>
+          <p>The only information collected through this website is what you choose to type into the enquiry form when you contact us. That's:</p>
+          <ul>
+            <li>Your name</li>
+            <li>Your email address</li>
+            <li>Your phone number, if you choose to give it (this is optional)</li>
+            <li>Your child's age range</li>
+            <li>The days and hours of care you need</li>
+            <li>Any message you add</li>
+          </ul>
+        </div>
+
+        <div class="legal-section">
+          <h2>Why we collect it</h2>
+          <p>We only use these details to reply to your enquiry — for example, to answer your question or arrange a visit. We don't use them for anything else, and we don't add you to a mailing list.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>Our lawful basis for using your information</h2>
+          <p>We rely on your <strong>consent</strong>. When you tick the consent box on the enquiry form before sending it, you're agreeing to let us store your details so we can get back to you.</p>
+          <p>You can withdraw your consent at any time by contacting us using the details above.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>How long we keep your information</h2>
+          <!-- TODO: Gloria to confirm the actual retention period (e.g. "6 months after your enquiry is closed") before this page goes live -->
+          <p>We keep enquiry details for <strong>[retention period to be confirmed]</strong>, and then delete them.</p>
+          <p>You can ask us to delete your details sooner, at any time, and we will do so unless we need to keep them for a legal reason.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>Who we share it with</h2>
+          <p>Your information is never sold, and it isn't shared with any third party. It's only ever used by Gloria's Place Childminding to respond to your enquiry.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2>Your rights</h2>
+          <p>Under UK GDPR, you have the right to:</p>
+          <ul>
+            <li>Ask what information we hold about you (the right of access)</li>
+            <li>Ask us to correct anything that's inaccurate</li>
+            <li>Ask us to delete your information</li>
+            <li>Complain to the <a href="https://ico.org.uk" rel="noopener">Information Commissioner's Office (ICO)</a> if you're unhappy with how your information has been handled</li>
+          </ul>
+          <p>To use any of these rights, just get in touch using the details at the top of this page.</p>
+          <!-- TODO: insert Gloria's ICO registration number here once confirmed -->
+          <p>ICO registration number: <strong>[to be confirmed]</strong></p>
+        </div>
+
+        <div class="legal-section">
+          <h2>What this notice covers</h2>
+          <p>This notice only covers how this website handles the details you share through the enquiry form.</p>
+          <p>It doesn't cover the information gathered and used day-to-day for children in Gloria's care, such as registration forms, health details or observations. That's covered by separate policies, available on request.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Footer
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="wrap footer__inner">
+      <div class="footer__col">
+        <div class="logo">
+          <span class="logo__mark" aria-hidden="true">GP</span>
+          <span class="logo__lockup">
+            <span class="logo__name">Gloria's Place</span>
+            <span class="logo__tagline">Childminding · Dundee</span>
+          </span>
+        </div>
+        <address>
+          Dundee, DD2 2FE<br>
+          <a href="tel:07823716600">07823 716600</a><br>
+          <a href="mailto:Gloriasplace25@gmail.com">Gloriasplace25@gmail.com</a>
+        </address>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Pages</p>
+        <ul>
+          <li><a href="index.html#top">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#enquiry">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Registration</p>
+        <ul>
+          <li>Care Inspectorate registered</li>
+          <li>SCMA member</li>
+          <li>PVG checked</li>
+          <li>First aid trained</li>
+          <li>Fully insured</li>
+        </ul>
+        <!-- TODO: insert the actual Care Inspectorate registration/CS number here once confirmed -->
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Documents</p>
+        <ul>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <!-- TODO: build terms.html — placeholder link until the page exists -->
+          <li><a href="#">Terms &amp; conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wrap footer__bottom">
+      <p>&copy; 2026 Gloria's Place Childminding. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Sticky mobile action bar
+       ========================================================================== -->
+  <div class="mobile-bar">
+    <a class="mobile-bar__link mobile-bar__link--call" href="tel:07823716600">
+      <span aria-hidden="true">&#128222;</span> Call
+    </a>
+    <a class="mobile-bar__link mobile-bar__link--enquire" href="index.html?intent=question#enquiry">
+      <span aria-hidden="true">&#9993;</span> Enquire
+    </a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
