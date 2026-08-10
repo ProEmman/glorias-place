@@ -128,7 +128,6 @@
       align-items: center;
       gap: var(--space-3);
       text-decoration: none;
-      white-space: nowrap;
     }
 
     .logo__mark {
@@ -248,6 +247,17 @@
       margin: 0;
     }
 
+    /* The rule above sets display:flex unconditionally, which — because
+       author styles always beat the UA stylesheet — defeats the browser's
+       native "hide non-summary content while <details> is closed"
+       behaviour below 900px. Restore it explicitly so the menu (and its
+       duplicate CTAs) isn't part of layout, and isn't reachable by
+       keyboard/screen reader, while collapsed. */
+    .nav-disclosure:not([open]) .nav-links,
+    .nav-disclosure:not([open]) .nav-actions {
+      display: none;
+    }
+
     .nav-links a {
       display: block;
       padding: var(--space-2) var(--space-3);
@@ -297,6 +307,12 @@
       .nav-actions {
         display: none !important;
       }
+
+      /* Only worth pinning to full size once it's sharing the row with
+         the logo and full nav (≥900px) — see .nav-cta below. */
+      .nav-cta {
+        flex-shrink: 0;
+      }
     }
 
     /* Header gets crowded with logo + nav + three buttons in this range —
@@ -307,8 +323,16 @@
       }
     }
 
-    .nav-cta {
-      flex-shrink: 0;
+    /* Below 900px .nav-cta is a plain flex child (not flex-shrink:0 — see
+       the ≥900px override above) so its label can wrap onto a second line
+       instead of forcing the header wider than the viewport. Even so,
+       logo + hamburger + this button don't all fit under ~400px, and the
+       sticky mobile bar already duplicates both actions at the bottom of
+       the screen, so drop it there rather than let the header overflow. */
+    @media (max-width: 399.98px) {
+      .site-header__actions {
+        display: none;
+      }
     }
 
     /* --------------------------------------------------------------------------

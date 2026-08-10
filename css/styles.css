@@ -83,11 +83,13 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100dvh;
   line-height: 1.65;
+  overflow-x: hidden;
 }
 
 img,
