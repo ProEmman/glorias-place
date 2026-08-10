@@ -752,6 +752,18 @@ textarea:disabled {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-5);
   }
+
+  /* Source order is [logo, pages, documents, registration] so the two
+     link lists can sit adjacent and merge onto one line below 700px (see
+     the compact mobile layout below) — restore the original on-screen
+     column order here. */
+  .footer__col--documents {
+    order: 4;
+  }
+
+  .footer__col--registration {
+    order: 3;
+  }
 }
 
 /* Footer-scoped recolour of the shared header logo lockup — a berry badge
@@ -822,4 +834,103 @@ textarea:disabled {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   font-size: var(--step--1);
   color: var(--n-400);
+}
+
+/* --------------------------------------------------------------------------
+   Footer — compact mobile layout
+   Below 700px the four-column grid collapses into a single dense stack:
+   logo lockup, contact details, all page links on one dot-separated line,
+   a divider, then the credentials on their own smaller dot-separated
+   line. .footer__col--pages and --documents are unwrapped with
+   display: contents so their two <ul>s become adjacent inline siblings
+   and flow together onto one line instead of each starting a new block —
+   see the order swap in the ≥700px rule above for how desktop keeps its
+   original column order despite the DOM being reordered for this.
+   -------------------------------------------------------------------------- */
+@media (max-width: 699.98px) {
+  .footer__inner {
+    display: block;
+  }
+
+  .footer__col {
+    margin-top: var(--space-3);
+  }
+
+  .footer__col:first-child {
+    margin-top: 0;
+  }
+
+  /* Same technique as .visually-hidden — removed from view, not from the
+     accessibility tree, so the column labels are still announced. */
+  .footer__heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .site-footer address {
+    line-height: 1.3;
+  }
+
+  /* Collapses "Dundee, DD2 2FE" and the phone number onto one line; the
+     email keeps its own line via the second, untouched <br>. */
+  .footer__addr-break {
+    display: none;
+  }
+
+  .site-footer address a[href^="tel:"]::before {
+    content: "\00a0\00b7\00a0";
+  }
+
+  /* Unwrap so the Pages and Documents <ul>s become direct, adjacent
+     siblings and can flow together as one line of inline text. */
+  .footer__col--pages,
+  .footer__col--documents {
+    display: contents;
+  }
+
+  .footer__links-list {
+    display: inline;
+    line-height: 1.3;
+  }
+
+  .footer__links-list li {
+    display: inline;
+  }
+
+  .footer__links-list li::before {
+    content: "\00a0\00b7\00a0";
+  }
+
+  /* The line-opening item in each independent list ("Home" for the merged
+     Pages+Documents line, the first credential for its own line below)
+     shouldn't be preceded by a dot. */
+  .footer__col--pages .footer__links-list li:first-child::before,
+  .footer__col--registration .footer__links-list li:first-child::before {
+    content: none;
+  }
+
+  .footer__col--pages .footer__links-list {
+    margin-top: var(--space-2);
+  }
+
+  /* Credentials sit on their own line below a thin divider, smaller and
+     in the muted footer colour rather than the near-white link colour —
+     verified 6.4:1 for --n-400 on --ink, clears WCAG AA for small text. */
+  .footer__col--registration {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .footer__col--registration .footer__links-list {
+    font-size: var(--step--1);
+    color: var(--n-400);
+  }
 }
