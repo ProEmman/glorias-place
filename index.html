@@ -1265,5 +1265,80 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script>
+  (function () {
+    "use strict";
+
+    var SUPABASE_URL = "https://kbblexnmskeqhafbdxnx.supabase.co";
+    var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtiYmxleG5tc2tlcWhhZmJkeG54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczNDQ3NjcsImV4cCI6MjEwMjkyMDc2N30.W_TTpvBhGNIcuWMBy1476HAc5oC0QTpnkjOVEPyGtko";
+
+    var form = document.querySelector(".enquiry-form");
+    if (!form) return;
+
+    var statusEl = document.createElement("p");
+    statusEl.className = "form-status";
+    statusEl.setAttribute("role", "status");
+    statusEl.setAttribute("aria-live", "polite");
+    form.appendChild(statusEl);
+
+    function setStatus(message, isError) {
+      statusEl.textContent = message;
+      statusEl.classList.toggle("form-status--error", !!isError);
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      var consentInput = form.querySelector("#consent");
+      if (!consentInput || !consentInput.checked) {
+        alert("Please confirm consent to continue.");
+        return;
+      }
+
+      var intentInput = form.querySelector('input[name="intent"]:checked');
+
+      var payload = {
+        enquiry_type: intentInput ? intentInput.value : null,
+        parent_name: form.querySelector("#parent-name").value,
+        email: form.querySelector("#email").value,
+        phone: form.querySelector("#phone").value,
+        child_age: form.querySelector("#child-age").value,
+        days_hours_needed: form.querySelector("#days-hours").value,
+        message: form.querySelector("#message").value,
+        consent_given: consentInput.checked
+      };
+
+      var submitBtn = form.querySelector(".enquiry-submit");
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(SUPABASE_URL + "/rest/v1/enquiries", {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (response) {
+          if (!response.ok) {
+            return response.text().then(function (text) {
+              throw new Error("Supabase insert failed (" + response.status + "): " + text);
+            });
+          }
+          form.reset();
+          setStatus("Thanks! Your enquiry has been sent — I'll get back to you soon.", false);
+        })
+        .catch(function (error) {
+          console.error("Enquiry form submission failed:", error);
+          setStatus("Sorry, something went wrong sending your enquiry. Please try again or email us directly.", true);
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
+    });
+  })();
+  </script>
 </body>
 </html>

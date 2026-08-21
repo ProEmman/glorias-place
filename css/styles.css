@@ -27,6 +27,9 @@
   --sun: #f2a93b; /* small accents only — badges, icons, underlines */
   --ink: #2e2028; /* body text */
   --error: #b3392a; /* form validation, desaturated warm red to match palette */
+  --error-tint: #f8e2de; /* error message background */
+  --success: #3f7a4e; /* form success confirmation, desaturated green to match palette */
+  --success-tint: #e3ede3; /* success message background */
 
   /* Neutral scale — tinted from --ink rather than pure grey */
   --n-100: #f7f1f3; /* faint fills */
@@ -718,6 +721,25 @@ textarea:disabled {
 
 .field.is-invalid .form-error {
   display: block;
+}
+
+.form-status {
+  margin-top: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--success-tint);
+  color: var(--success);
+  font-size: var(--step-0);
+  font-weight: 700;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status--error {
+  background: var(--error-tint);
+  color: var(--error);
 }
 
 /* --------------------------------------------------------------------------
