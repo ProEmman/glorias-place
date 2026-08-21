@@ -745,6 +745,74 @@
       border-radius: var(--radius-sm);
     }
 
+    /* "Days & hours needed" chips — same visually-hidden-input-plus-label
+       pattern as .intent-chip above, but checkboxes (multiple selectable)
+       instead of radios. */
+    .field--days-hours {
+      border: 0;
+      padding: 0;
+      min-width: 0;
+    }
+
+    .field--days-hours legend {
+      display: block;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: var(--space-2);
+      padding: 0;
+    }
+
+    .day-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+
+    .day-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3rem;
+      padding: var(--space-2) var(--space-3);
+      border: 2px solid var(--n-300);
+      border-radius: var(--radius-md);
+      margin-bottom: 0;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .day-chip:hover {
+      border-color: var(--teal);
+    }
+
+    .day-input:checked + .day-chip {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #fff;
+    }
+
+    .day-input:focus-visible + .day-chip {
+      outline: 3px solid var(--berry);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    .time-range {
+      display: flex;
+      gap: var(--space-4);
+    }
+
+    .time-range__field {
+      flex: 1 1 0%;
+    }
+
+    .time-range__field label {
+      font-size: var(--step--1);
+    }
+
     .field--checkbox {
       display: flex;
       align-items: flex-start;
@@ -1141,11 +1209,46 @@
               <span class="form-error" id="child-age-error">Please select your child's age.</span>
             </div>
 
-            <div class="field field--full">
-              <label for="days-hours">Days &amp; hours needed</label>
-              <input type="text" id="days-hours" name="days-hours" placeholder="Mon, Wed, Fri — 8am to 5pm" aria-describedby="days-hours-error" required>
+            <fieldset class="field field--full field--days-hours">
+              <legend>Days &amp; hours needed</legend>
+
+              <div class="day-choices">
+                <input type="checkbox" id="day-mon" class="visually-hidden day-input" value="Mon">
+                <label for="day-mon" class="day-chip">Mon</label>
+
+                <input type="checkbox" id="day-tue" class="visually-hidden day-input" value="Tue">
+                <label for="day-tue" class="day-chip">Tue</label>
+
+                <input type="checkbox" id="day-wed" class="visually-hidden day-input" value="Wed">
+                <label for="day-wed" class="day-chip">Wed</label>
+
+                <input type="checkbox" id="day-thu" class="visually-hidden day-input" value="Thu">
+                <label for="day-thu" class="day-chip">Thu</label>
+
+                <input type="checkbox" id="day-fri" class="visually-hidden day-input" value="Fri">
+                <label for="day-fri" class="day-chip">Fri</label>
+
+                <input type="checkbox" id="day-sat" class="visually-hidden day-input" value="Sat">
+                <label for="day-sat" class="day-chip">Sat</label>
+
+                <input type="checkbox" id="day-sun" class="visually-hidden day-input" value="Sun">
+                <label for="day-sun" class="day-chip">Sun</label>
+              </div>
+
+              <div class="time-range">
+                <div class="time-range__field">
+                  <label for="start-time">Start time</label>
+                  <input type="time" id="start-time">
+                </div>
+                <div class="time-range__field">
+                  <label for="end-time">End time</label>
+                  <input type="time" id="end-time">
+                </div>
+              </div>
+
+              <input type="hidden" id="days-hours" name="days-hours">
               <span class="form-error" id="days-hours-error">Please let us know the days and hours you need.</span>
-            </div>
+            </fieldset>
 
             <div class="field field--full">
               <label for="message">Message <span class="field-optional">(optional)</span></label>
