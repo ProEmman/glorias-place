@@ -1196,7 +1196,7 @@
               <span class="form-error" id="phone-error">Please enter a valid phone number.</span>
             </div>
 
-            <div class="field">
+            <div class="field" data-visit-only>
               <label for="child-age">Child's age</label>
               <select id="child-age" name="child-age" aria-describedby="child-age-error" required>
                 <option value="">Select an age</option>
@@ -1209,7 +1209,7 @@
               <span class="form-error" id="child-age-error">Please select your child's age.</span>
             </div>
 
-            <fieldset class="field field--full field--days-hours">
+            <fieldset class="field field--full field--days-hours" data-visit-only>
               <legend>Days &amp; hours needed</legend>
 
               <div class="day-choices">
@@ -1251,7 +1251,7 @@
             </fieldset>
 
             <div class="field field--full">
-              <label for="message">Message <span class="field-optional">(optional)</span></label>
+              <label for="message">Message <span class="field-optional" id="message-optional">(optional)</span></label>
               <textarea id="message" name="message" aria-describedby="message-error"></textarea>
               <span class="form-error" id="message-error">There's a problem with your message.</span>
             </div>

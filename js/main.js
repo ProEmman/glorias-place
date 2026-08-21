@@ -104,3 +104,61 @@
   startTime.addEventListener("change", updateHiddenField);
   endTime.addEventListener("change", updateHiddenField);
 })();
+
+(function () {
+  "use strict";
+
+  // "Arrange a visit" shows the full form; "Ask a question" hides the
+  // fields that only make sense for booking a visit (child's age, days &
+  // hours) and makes the message field required instead. Fields carrying
+  // [data-visit-only] are hidden/shown together; required is toggled to
+  // match so a hidden field never blocks submission, and visit-only values
+  // are cleared when hiding so they can't be submitted unseen.
+  var form = document.querySelector(".enquiry-form");
+  if (!form) return;
+
+  var intentInputs = form.querySelectorAll('input[name="intent"]');
+  if (!intentInputs.length) return;
+
+  var visitOnlyFields = form.querySelectorAll("[data-visit-only]");
+  var childAgeSelect = form.querySelector("#child-age");
+  var dayInputs = form.querySelectorAll(".day-input");
+  var startTime = form.querySelector("#start-time");
+  var endTime = form.querySelector("#end-time");
+  var daysHoursHidden = form.querySelector("#days-hours");
+  var messageField = form.querySelector("#message");
+  var messageOptionalNote = form.querySelector("#message-optional");
+
+  function applyIntent() {
+    var checked = form.querySelector('input[name="intent"]:checked');
+    var isVisit = !checked || checked.value === "visit";
+
+    visitOnlyFields.forEach(function (field) {
+      field.hidden = !isVisit;
+    });
+
+    if (childAgeSelect) {
+      childAgeSelect.required = isVisit;
+      if (!isVisit) childAgeSelect.value = "";
+    }
+
+    if (!isVisit) {
+      dayInputs.forEach(function (input) {
+        input.checked = false;
+      });
+      if (startTime) startTime.value = "";
+      if (endTime) endTime.value = "";
+      if (daysHoursHidden) daysHoursHidden.value = "";
+    }
+
+    if (messageField) messageField.required = !isVisit;
+    if (messageOptionalNote) messageOptionalNote.hidden = !isVisit;
+  }
+
+  intentInputs.forEach(function (input) {
+    input.addEventListener("change", applyIntent);
+  });
+
+  // Also covers the ?intent=visit/question preselection in the block above.
+  applyIntent();
+})();
