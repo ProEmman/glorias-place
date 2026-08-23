@@ -480,34 +480,6 @@
     }
 
     /* --------------------------------------------------------------------------
-       Availability card
-       -------------------------------------------------------------------------- */
-    .availability-card {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-3);
-      background: #fff;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow);
-      padding: var(--space-4) var(--space-5);
-      flex-wrap: wrap;
-    }
-
-    .availability-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--teal);
-      flex-shrink: 0;
-    }
-
-    .availability-updated {
-      color: var(--n-500);
-      font-size: var(--step--1);
-      width: 100%;
-    }
-
-    /* --------------------------------------------------------------------------
        Trust strip
        -------------------------------------------------------------------------- */
     .trust-list {
@@ -1050,20 +1022,6 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-         Availability
-         ========================================================================== -->
-    <section class="band" id="availability-section">
-      <div class="wrap">
-        <h2 class="visually-hidden" id="availability-heading">Current availability</h2>
-        <div id="availability" class="availability-card" role="status" aria-live="polite" aria-labelledby="availability-heading">
-          <span class="availability-dot" aria-hidden="true"></span>
-          <p><strong>Accepting enquiries</strong> for full-time, part-time and before/after school places.</p>
-          <p class="availability-updated">Last updated: <time datetime="2026-08-01">1 August 2026</time></p>
-        </div>
-      </div>
-    </section>
-
     <svg class="divider divider--about" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" style="background-color: var(--cream);">
       <path d="M0,32 C480,26 960,20 1440,24 L1440,60 L0,60 Z" style="fill: var(--blush);"></path>
     </svg>
@@ -1164,6 +1122,7 @@
       <div class="wrap contact-faq">
         <div class="contact-faq__form">
           <h2>Get in touch</h2>
+          <p id="live-availability-badge" class="availability-badge" role="status" aria-live="polite" hidden></p>
           <p>Fill in the form and I'll get back to you to arrange a visit or answer any questions.</p>
 
           <form class="enquiry-form" action="#" method="post" novalidate>
@@ -1441,6 +1400,51 @@
           if (submitBtn) submitBtn.disabled = false;
         });
     });
+  })();
+  </script>
+  <script>
+  (function () {
+    "use strict";
+
+    var SUPABASE_URL = "https://kbblexnmskeqhafbdxnx.supabase.co";
+    var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtiYmxleG5tc2tlcWhhZmJkeG54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczNDQ3NjcsImV4cCI6MjEwMjkyMDc2N30.W_TTpvBhGNIcuWMBy1476HAc5oC0QTpnkjOVEPyGtko";
+
+    var STATUS_CLASSES = {
+      "Accepting enquiries": "availability-badge--accepting",
+      "Limited spots": "availability-badge--limited",
+      "Full": "availability-badge--full",
+      "Not currently available": "availability-badge--unavailable"
+    };
+
+    var badge = document.getElementById("live-availability-badge");
+    if (!badge) return;
+
+    fetch(SUPABASE_URL + "/rest/v1/site_settings?select=availability_status&id=eq.1", {
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY
+      }
+    })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("Supabase request failed (" + response.status + ")");
+        }
+        return response.json();
+      })
+      .then(function (rows) {
+        var status = rows && rows[0] && rows[0].availability_status;
+        var statusClass = status && STATUS_CLASSES[status];
+        if (!statusClass) {
+          throw new Error("Unrecognized availability_status: " + status);
+        }
+
+        badge.textContent = status;
+        badge.classList.add(statusClass);
+        badge.hidden = false;
+      })
+      .catch(function (error) {
+        console.error("Availability badge fetch failed:", error);
+      });
   })();
   </script>
 </body>

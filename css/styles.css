@@ -30,6 +30,10 @@
   --error-tint: #f8e2de; /* error message background */
   --success: #3f7a4e; /* form success confirmation, desaturated green to match palette */
   --success-tint: #e3ede3; /* success message background */
+  --gold: #8a5c14; /* amber accent, e.g. "limited spots" status */
+  --gold-tint: #faf0da; /* amber status background */
+  --coral: #b8501f; /* orange accent, e.g. "full" status */
+  --coral-tint: #fbe6da; /* orange status background */
 
   /* Neutral scale — tinted from --ink rather than pure grey */
   --n-100: #f7f1f3; /* faint fills */
@@ -327,22 +331,10 @@ ol.prose {
   }
 }
 
-/* The hero's own bottom padding plus the availability band's top padding
-   stack up with no divider between them (same cream background both
-   sides), so the card ends up much further from the CTA buttons above it
-   than it needs to be. Tighten both sides, plus the card's own heading-
-   to-content margin (its heading is visually-hidden, so that margin was
-   only ever adding dead space here, not separating visible content). */
+/* Tighten the hero's bottom padding so its CTA buttons sit closer to the
+   wave divider below, rather than the section's default full padding. */
 #top {
   padding-bottom: var(--space-2);
-}
-
-#availability-section {
-  padding-top: var(--space-2);
-}
-
-#availability {
-  margin-top: var(--space-2);
 }
 
 /* Half-padding variant for sections that need less breathing room */
@@ -378,8 +370,7 @@ ol.prose {
    margin would just be dead space on top of .band--tight's own padding. */
 .card-grid,
 .faq-list,
-.enquiry-form,
-.availability-card {
+.enquiry-form {
   margin-top: var(--space-4);
 }
 
@@ -740,6 +731,54 @@ textarea:disabled {
 .form-status--error {
   background: var(--error-tint);
   color: var(--error);
+}
+
+/* Live availability badge — fetched from Supabase on page load, see the
+   inline script near the end of index.html. Hidden by default and only
+   revealed once a recognized status value comes back, so a failed fetch
+   just leaves no badge rather than an error or stale placeholder. */
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.availability-badge[hidden] {
+  display: none;
+}
+
+.availability-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.availability-badge--accepting {
+  background: var(--success-tint);
+  color: var(--success);
+}
+
+.availability-badge--limited {
+  background: var(--gold-tint);
+  color: var(--gold);
+}
+
+.availability-badge--full {
+  background: var(--coral-tint);
+  color: var(--coral);
+}
+
+.availability-badge--unavailable {
+  background: var(--n-100);
+  color: var(--n-600);
 }
 
 /* --------------------------------------------------------------------------
