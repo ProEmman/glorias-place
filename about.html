@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About | Gloria's Place Childminding</title>
-  <meta name="description" content="Meet Gloria's Place Childminding — a Care Inspectorate registered childminder in Dundee DD2, offering warm, safe care for children aged 0–12, weekdays 7:30am–6:00pm.">
+  <title>About Gloria | Gloria's Place Childminding — Dundee</title>
+  <meta name="description" content="Meet Gloria, a Care Inspectorate registered childminder in Dundee DD2 — PVG checked, first aid trained and fully insured, caring for children aged 0–12.">
   <link rel="canonical" href="https://www.gloriasplacechildminding.com/about.html">
 
   <!-- Favicon -->
@@ -13,10 +13,10 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="About | Gloria's Place Childminding">
-  <meta property="og:description" content="Care Inspectorate registered childminder in Dundee DD2. Warm, safe care for ages 0–12, weekdays 7:30am–6:00pm.">
+  <meta property="og:title" content="About Gloria | Gloria's Place Childminding — Dundee">
+  <meta property="og:description" content="Meet Gloria — a Care Inspectorate registered, PVG checked childminder in Dundee DD2, offering warm, home-based care for children aged 0–12.">
   <meta property="og:url" content="https://www.gloriasplacechildminding.com/about.html">
-  <meta property="og:image" content="https://www.gloriasplacechildminding.com/img/og-image.jpg">
+  <meta property="og:image" content="https://www.gloriasplacechildminding.com/img/flyer.jpg">
   <meta property="og:locale" content="en_GB">
 
   <!-- Fonts: Baloo 2 (headings) + Mulish (body) — see css/styles.css --font-heading / --font-body -->
@@ -25,6 +25,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Person structured data — deliberately minimal: this page introduces
+       Gloria, so a ProfilePage/Person pairing is the correct schema.org fit
+       (see https://schema.org/ProfilePage). It references the ChildCare
+       business by name+url via "worksFor" rather than repeating the full
+       address/phone/hours block already on index.html — duplicating that
+       detailed business data across pages risks Google treating them as
+       conflicting/stale copies of the same entity instead of one source
+       of truth. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Gloria",
+      "jobTitle": "Registered Childminder",
+      "worksFor": {
+        "@type": "ChildCare",
+        "name": "Gloria's Place Childminding",
+        "url": "https://www.gloriasplacechildminding.com/"
+      }
+    }
+  }
+  </script>
 
   <style>
     /* ==========================================================================
