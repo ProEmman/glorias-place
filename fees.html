@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fees | Gloria's Place Childminding</title>
+  <meta name="description" content="Fees at Gloria's Place Childminding depend on your child's age, the days and hours you need, and funded eligibility. Get in touch for a personalised quote.">
+  <link rel="canonical" href="https://www.gloriasplacechildminding.com/fees.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fees | Gloria's Place Childminding">
+  <meta property="og:description" content="Fees depend on your child's age, days/hours needed, and funded eligibility. Get in touch for a personalised quote.">
+  <meta property="og:url" content="https://www.gloriasplacechildminding.com/fees.html">
+  <meta property="og:image" content="https://www.gloriasplacechildminding.com/img/og-image.jpg">
+  <meta property="og:locale" content="en_GB">
+
+  <!-- Fonts: Baloo 2 (headings) + Mulish (body) — see css/styles.css --font-heading / --font-body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* ==========================================================================
+       Page-specific CSS for fees.html
+       Shared chrome rules copied verbatim from privacy.html so the header,
+       nav, footer and mobile bar match exactly. Not yet in css/styles.css —
+       move into the stylesheet once stable (see index.html's own note).
+       ========================================================================== */
+
+    /* --------------------------------------------------------------------------
+       Utility strip — thin bar above the main header
+       White text verified against --berry — 8.1:1, passes WCAG AA.
+       -------------------------------------------------------------------------- */
+    .utility-strip {
+      background: var(--berry);
+      color: #fff;
+    }
+
+    .utility-strip__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      height: 36px;
+      font-size: var(--step--1);
+    }
+
+    .utility-strip__hours {
+      white-space: nowrap;
+    }
+
+    .utility-strip__phone {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .utility-strip__phone:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 639.98px) {
+      .utility-strip {
+        display: none;
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       Sticky header + nav disclosure
+       -------------------------------------------------------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--n-200);
+    }
+
+    body.nav-open .site-header {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .site-header__inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: var(--space-4);
+      padding-block: var(--space-3);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      text-decoration: none;
+    }
+
+    .logo__mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--berry);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--step-0);
+    }
+
+    .logo__lockup {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo__name {
+      font-family: var(--font-heading);
+      font-size: var(--step-1);
+      font-weight: 700;
+      color: var(--berry);
+    }
+
+    .logo__tagline {
+      font-size: var(--step--1);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+    }
+
+    .site-nav {
+      justify-self: center;
+    }
+
+    .site-header__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      justify-self: end;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 899.98px) {
+      .nav-call,
+      .nav-question {
+        display: none;
+      }
+    }
+
+    .nav-disclosure {
+      position: relative;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      list-style: none;
+      cursor: pointer;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .nav-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    .nav-toggle__bars,
+    .nav-toggle__bars::before,
+    .nav-toggle__bars::after {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+    }
+
+    .nav-toggle__bars {
+      position: relative;
+    }
+
+    .nav-toggle__bars::before,
+    .nav-toggle__bars::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-toggle__bars::before {
+      top: -7px;
+    }
+
+    .nav-toggle__bars::after {
+      top: 7px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      padding: var(--space-3) 0 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: var(--space-2) var(--space-3);
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--ink);
+      border-radius: var(--radius-sm);
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+      background: var(--blush);
+    }
+
+    .nav-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-top: var(--space-2);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--n-200);
+    }
+
+    .nav-actions__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2);
+    }
+
+    @media (max-width: 899.98px) {
+      .nav-disclosure:not([open]) .nav-panel {
+        display: none;
+      }
+
+      .nav-panel {
+        position: fixed;
+        inset: 0;
+        z-index: 70;
+        display: flex;
+        flex-direction: column;
+        background: var(--cream);
+        padding: var(--space-3);
+        overflow-y: auto;
+      }
+
+      .nav-panel__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+        flex-shrink: 0;
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--n-200);
+      }
+
+      .nav-panel__close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border: none;
+        background: transparent;
+        border-radius: var(--radius-sm);
+        font-size: 1.75rem;
+        line-height: 1;
+        color: var(--ink);
+      }
+
+      .nav-panel__close:hover {
+        background: var(--blush);
+      }
+
+      .nav-panel .nav-links {
+        margin-top: var(--space-3);
+        gap: 0;
+      }
+
+      .nav-panel .nav-links a {
+        display: flex;
+        align-items: center;
+        min-height: 40px;
+        padding: 6px var(--space-2);
+        white-space: nowrap;
+      }
+
+      .nav-panel .nav-actions {
+        margin-top: auto;
+        padding-top: var(--space-3);
+        border-top: none;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .nav-toggle {
+        display: none;
+      }
+
+      .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        gap: var(--space-3);
+        padding: 0;
+      }
+
+      .nav-links a {
+        padding: var(--space-2) 0;
+      }
+
+      .nav-panel__top {
+        display: none !important;
+      }
+
+      .nav-actions {
+        display: none !important;
+      }
+
+      .nav-cta {
+        flex-shrink: 0;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .nav-links {
+        gap: var(--space-5);
+      }
+    }
+
+    @media (max-width: 399.98px) {
+      .site-header__actions {
+        display: none;
+      }
+    }
+
+    /* Footer styles now live in css/styles.css — shared with index.html. */
+
+    /* --------------------------------------------------------------------------
+       Sticky mobile action bar
+       -------------------------------------------------------------------------- */
+    .mobile-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      display: flex;
+      box-shadow: var(--shadow);
+      border-top: 1px solid var(--n-200);
+    }
+
+    .mobile-bar__link {
+      flex: 1 1 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .mobile-bar__link--call {
+      background: var(--teal);
+    }
+
+    .mobile-bar__link--enquire {
+      background: var(--berry);
+    }
+
+    @media (min-width: 760px) {
+      .mobile-bar {
+        display: none;
+      }
+    }
+
+    body.nav-open .mobile-bar {
+      display: none;
+    }
+
+    @media (max-width: 759.98px) {
+      body {
+        padding-bottom: 4.25rem;
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       Fees page content
+       -------------------------------------------------------------------------- */
+    .legal-intro h1 {
+      margin-bottom: var(--space-3);
+    }
+
+    .fees-content p + p {
+      margin-top: var(--space-4);
+    }
+
+    .fees-cta {
+      margin-top: var(--space-6);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--n-200);
+    }
+
+    .fees-cta p {
+      margin-bottom: var(--space-4);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <!-- ==========================================================================
+       Utility strip
+       ========================================================================== -->
+  <div class="utility-strip">
+    <div class="wrap utility-strip__inner">
+      <p class="utility-strip__hours">Weekdays 7:30am – 6:00pm</p>
+      <a class="utility-strip__phone" href="tel:07823716600">
+        <span aria-hidden="true">&#128222;</span> 07823 716600
+      </a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Header
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="logo" href="index.html">
+        <span class="logo__mark" aria-hidden="true">GP</span>
+        <span class="logo__lockup">
+          <span class="logo__name">Gloria's Place</span>
+          <span class="logo__tagline">Childminding · Dundee</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <details class="nav-disclosure">
+          <summary class="nav-toggle" aria-label="Menu">
+            <span class="nav-toggle__bars" aria-hidden="true"></span>
+            Menu
+          </summary>
+          <div class="nav-panel">
+            <div class="nav-panel__top">
+              <a class="logo" href="index.html">
+                <span class="logo__mark" aria-hidden="true">GP</span>
+                <span class="logo__lockup">
+                  <span class="logo__name">Gloria's Place</span>
+                  <span class="logo__tagline">Childminding · Dundee</span>
+                </span>
+              </a>
+              <button type="button" class="nav-panel__close" aria-label="Close menu">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <ul class="nav-links">
+              <li><a href="index.html#top">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="index.html#included">What's included</a></li>
+              <li><a href="fees.html">Fees</a></li>
+              <li><a href="index.html#faq">Questions</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+              <a class="btn btn--primary btn--wide" href="index.html?intent=visit#enquiry">Arrange a visit</a>
+              <div class="nav-actions__row">
+                <a class="btn btn--ghost" href="tel:07823716600">Call us</a>
+                <a class="btn btn--ghost" href="index.html?intent=question#enquiry">Ask us</a>
+              </div>
+            </div>
+          </div>
+        </details>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="btn btn--ghost btn--sm nav-call" href="tel:07823716600">Call us</a>
+        <a class="btn btn--ghost btn--sm nav-question" href="index.html?intent=question#enquiry">Ask a question</a>
+        <a class="btn btn--primary btn--sm nav-cta" href="index.html?intent=visit#enquiry">Arrange a visit</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ==========================================================================
+         Fees intro
+         ========================================================================== -->
+    <section class="band">
+      <div class="wrap legal-intro">
+        <p class="eyebrow">Fees</p>
+        <h1>Fees</h1>
+        <p>Every family's needs are different, so here's how fees work at Gloria's Place.</p>
+      </div>
+    </section>
+
+    <section class="band band--paper">
+      <div class="wrap prose fees-content">
+        <p>I don't publish a fixed price list, because the right fee for your family really does depend on the details — your child's age, the days and hours of care you need, and whether a funded place applies. Two families with different routines can end up with quite different costs, so a one-size-fits-all rate wouldn't give you an accurate picture.</p>
+
+        <p>Funded child places may be available, so it's well worth getting in touch to check your child's eligibility — this can make a real difference to what you pay.</p>
+
+        <p>The best next step is a quick conversation. Tell me a bit about your child's age and the care you're looking for, and I'll put together a personalised quote based on exactly what your family needs.</p>
+
+        <div class="fees-cta">
+          <p>Ready to find out more?</p>
+          <a class="btn btn--primary" href="index.html#enquiry">Get a personalised quote</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Footer
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="wrap footer__inner">
+      <div class="footer__col">
+        <div class="logo">
+          <span class="logo__mark" aria-hidden="true">GP</span>
+          <span class="logo__lockup">
+            <span class="logo__name">Gloria's Place</span>
+            <span class="logo__tagline">Childminding · Dundee</span>
+          </span>
+        </div>
+        <address>
+          Dundee, DD2 2FE<br class="footer__addr-break">
+          <a href="tel:07823716600">07823 716600</a><br>
+          <a href="mailto:Gloriasplace25@gmail.com">Gloriasplace25@gmail.com</a>
+        </address>
+      </div>
+
+      <div class="footer__col footer__col--pages">
+        <p class="footer__heading">Pages</p>
+        <ul class="footer__links-list">
+          <li><a href="index.html#top">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="fees.html">Fees</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col footer__col--documents">
+        <p class="footer__heading">Documents</p>
+        <ul class="footer__links-list">
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <!-- TODO: build terms.html — placeholder link until the page exists -->
+          <li><a href="#">Terms &amp; conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col footer__col--registration">
+        <p class="footer__heading">Registration</p>
+        <ul class="footer__links-list">
+          <li>Care Inspectorate registered</li>
+          <li>SCMA member</li>
+          <li>PVG checked</li>
+          <li>First aid trained</li>
+          <li>Fully insured</li>
+        </ul>
+        <!-- TODO: insert the actual Care Inspectorate registration/CS number here once confirmed -->
+      </div>
+    </div>
+
+    <div class="wrap footer__bottom">
+      <p>&copy; 2026 Gloria's Place Childminding. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Sticky mobile action bar
+       ========================================================================== -->
+  <div class="mobile-bar">
+    <a class="mobile-bar__link mobile-bar__link--call" href="tel:07823716600">
+      <span aria-hidden="true">&#128222;</span> Call
+    </a>
+    <a class="mobile-bar__link mobile-bar__link--enquire" href="index.html?intent=question#enquiry">
+      <span aria-hidden="true">&#9993;</span> Enquire
+    </a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
