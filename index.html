@@ -578,21 +578,21 @@
        -------------------------------------------------------------------------- */
     .contact-faq {
       display: grid;
-      gap: var(--space-6);
+      gap: var(--space-5);
     }
 
     .contact-faq__form,
     .contact-faq__faq {
       background: #fff;
       border-radius: var(--radius-md);
-      padding: var(--space-5);
+      padding: var(--space-4);
       box-shadow: var(--shadow);
     }
 
     @media (max-width: 639.98px) {
       .contact-faq__form,
       .contact-faq__faq {
-        padding: var(--space-4);
+        padding: var(--space-3);
       }
     }
 
@@ -603,13 +603,28 @@
         /* Stretch (not start) so both cards match height */
         align-items: stretch;
       }
+
+      /* Wider than the site's usual 1140px .wrap cap — this section is the
+         only one with dense two-column form content, so it benefits from
+         extra horizontal room to wrap into fewer, shorter rows instead of
+         staying narrow and tall. #enquiry .wrap (specificity 1,1,0) beats
+         the global .wrap rule (0,1,0) regardless of source order. */
+      #enquiry .wrap {
+        max-width: 1320px;
+      }
     }
 
     .faq-item {
       border-bottom: 1px solid var(--n-200);
-      padding-block: var(--space-4);
     }
 
+    /* Padding lives on <summary> itself, not on .faq-item — .faq-item's own
+       padding would sit outside the actual clickable/tappable element, so
+       it wouldn't count toward the tap target at all. min-height is a
+       floor: a summary whose text wraps to 2 lines just grows past it, a
+       1-line summary gets centered up to fill it — either way the real,
+       interactive element is always >= 44px (WCAG 2.5.8), not just the
+       row's visual padding around it. */
     .faq-item summary {
       display: flex;
       align-items: center;
@@ -621,6 +636,8 @@
       color: var(--berry);
       font-weight: 600;
       font-size: var(--step-1);
+      min-height: 44px;
+      padding-block: 0.25rem;
     }
 
     .faq-item summary::-webkit-details-marker {
@@ -640,27 +657,42 @@
     }
 
     .faq-item p {
+      margin-top: var(--space-2);
+      padding-bottom: var(--space-2);
+    }
+
+    /* .faq-list gets the shared .card-grid/.faq-list/.enquiry-form
+       margin-top: var(--space-4) from css/styles.css by default — tighten
+       it here (this rule's later source position wins the tie). */
+    .faq-list {
       margin-top: var(--space-3);
     }
 
     .enquiry-form {
       display: grid;
-      gap: var(--space-4);
+      gap: var(--space-3);
+      margin-top: var(--space-3);
     }
 
     .enquiry-form textarea {
-      min-height: 5.5rem;
+      min-height: 4.5rem;
     }
 
-    @media (min-width: 640px) {
-      .enquiry-form {
-        grid-template-columns: 1fr 1fr;
-      }
+    /* Pairs two related fields on one row at every width (name+email,
+       phone+child's-age) — not gated behind a breakpoint like the old
+       2-column form grid was, so mobile gets the same pairing as desktop.
+       flex-basis/min-width of 130px is the "genuinely doesn't fit" floor:
+       below roughly 2*130px+gap+card-padding (~300px viewport) the row
+       wraps to stacked instead of squeezing fields unreadably thin. */
+    .field-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
 
-      .field--full,
-      .enquiry-submit {
-        grid-column: 1 / -1;
-      }
+    .field-row > .field {
+      flex: 1 1 130px;
+      min-width: 130px;
     }
 
     .field-optional {
@@ -738,26 +770,37 @@
       padding: 0;
     }
 
+    /* Single tight row that never wraps, even on the narrowest phones —
+       flex-wrap: nowrap plus each chip taking an equal flex share (instead
+       of a fixed min-width) means 7 chips always fit edge-to-edge on one
+       line, however narrow the card gets. Tap-target height (44px) is kept
+       via min-height; width is deliberately tight — per WCAG 2.5.8 only
+       one dimension of a target needs to reach 44px when it sits in a row
+       of similar controls, and height is that dimension here. */
     .day-choices {
       display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-2);
-      margin-bottom: var(--space-4);
+      flex-wrap: nowrap;
+      gap: 4px;
+      margin-bottom: var(--space-2);
     }
 
     .day-chip {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 3rem;
-      padding: var(--space-2) var(--space-3);
+      flex: 1 1 0%;
+      min-width: 0;
+      min-height: 44px;
+      padding: 0 2px;
       border: 2px solid var(--n-300);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-sm);
       margin-bottom: 0;
       font-weight: 600;
+      font-size: var(--step--1);
       color: var(--ink);
       cursor: pointer;
       text-align: center;
+      white-space: nowrap;
     }
 
     .day-chip:hover {
@@ -778,7 +821,7 @@
 
     .time-range {
       display: flex;
-      gap: var(--space-4);
+      gap: var(--space-2);
     }
 
     .time-range__field {
@@ -1142,35 +1185,39 @@
               </div>
             </fieldset>
 
-            <div class="field">
-              <label for="parent-name">Your name</label>
-              <input type="text" id="parent-name" name="parent-name" autocomplete="name" aria-describedby="parent-name-error" required>
-              <span class="form-error" id="parent-name-error">Please enter your name.</span>
+            <div class="field-row">
+              <div class="field">
+                <label for="parent-name">Your name</label>
+                <input type="text" id="parent-name" name="parent-name" autocomplete="name" aria-describedby="parent-name-error" required>
+                <span class="form-error" id="parent-name-error">Please enter your name.</span>
+              </div>
+
+              <div class="field">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" autocomplete="email" aria-describedby="email-error" required>
+                <span class="form-error" id="email-error">Please enter a valid email address.</span>
+              </div>
             </div>
 
-            <div class="field">
-              <label for="email">Email address</label>
-              <input type="email" id="email" name="email" autocomplete="email" aria-describedby="email-error" required>
-              <span class="form-error" id="email-error">Please enter a valid email address.</span>
-            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="phone">Phone <span class="field-optional">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-error">
+                <span class="form-error" id="phone-error">Please enter a valid phone number.</span>
+              </div>
 
-            <div class="field">
-              <label for="phone">Phone number <span class="field-optional">(optional)</span></label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-error">
-              <span class="form-error" id="phone-error">Please enter a valid phone number.</span>
-            </div>
-
-            <div class="field" data-visit-only>
-              <label for="child-age">Child's age</label>
-              <select id="child-age" name="child-age" aria-describedby="child-age-error" required>
-                <option value="">Select an age</option>
-                <option value="under-1">Under 1</option>
-                <option value="1-2">1–2 years</option>
-                <option value="3-4">3–4 years</option>
-                <option value="5-7">5–7 years</option>
-                <option value="8-12">8–12 years</option>
-              </select>
-              <span class="form-error" id="child-age-error">Please select your child's age.</span>
+              <div class="field" data-visit-only>
+                <label for="child-age">Child's age</label>
+                <select id="child-age" name="child-age" aria-describedby="child-age-error" required>
+                  <option value="">Select an age</option>
+                  <option value="under-1">Under 1</option>
+                  <option value="1-2">1–2 years</option>
+                  <option value="3-4">3–4 years</option>
+                  <option value="5-7">5–7 years</option>
+                  <option value="8-12">8–12 years</option>
+                </select>
+                <span class="form-error" id="child-age-error">Please select your child's age.</span>
+              </div>
             </div>
 
             <fieldset class="field field--full field--days-hours" data-visit-only>
@@ -1233,23 +1280,23 @@
         <div class="contact-faq__faq" id="faq">
           <h2 id="faq-heading">Frequently asked questions</h2>
           <div class="faq-list">
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>What ages do you care for?</summary>
               <p>I care for children aged 0–12, including before and after school care and school holiday care.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>Are you Care Inspectorate registered?</summary>
               <p>Yes — I'm registered with the Care Inspectorate, a member of the Scottish Childminding Association (SCMA), PVG checked, first aid trained and fully insured.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>Do you offer funded places?</summary>
               <p>Yes, funded child places are available — get in touch to check current availability for your child's age group.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>What are your opening hours?</summary>
               <p>I'm open weekdays from 7:30am to 6:00pm, offering full-time and part-time care.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>Do you provide meals?</summary>
               <p>Yes, home-cooked meals and healthy snacks are included, alongside outdoor play, local outings, and art, craft and educational activities.</p>
             </details>

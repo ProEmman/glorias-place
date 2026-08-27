@@ -187,3 +187,23 @@
   // Also covers the ?intent=visit/question preselection in the block above.
   applyIntent();
 })();
+
+(function () {
+  "use strict";
+
+  // FAQ accordion: the faq-item <details> already share name="faq", which
+  // makes modern browsers auto-close siblings natively with no JS at all.
+  // This is just a fallback for older browsers that don't support shared-name
+  // <details> groups yet, so only one answer is ever open there too.
+  var faqItems = document.querySelectorAll(".faq-item");
+  if (!faqItems.length) return;
+
+  faqItems.forEach(function (item) {
+    item.addEventListener("toggle", function () {
+      if (!item.open) return;
+      faqItems.forEach(function (other) {
+        if (other !== item) other.open = false;
+      });
+    });
+  });
+})();
