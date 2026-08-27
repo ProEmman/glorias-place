@@ -25,8 +25,33 @@
   var navDisclosure = document.querySelector(".nav-disclosure");
   if (!navDisclosure) return;
 
+  // css/styles.css's body.nav-open{overflow:hidden} alone doesn't stop
+  // touch-drag scrolling the page behind the full-screen panel on mobile
+  // Safari/Chrome — overflow:hidden only blocks scrollbar/wheel scrolling,
+  // not touchmove-driven scroll of the underlying document. Pinning body
+  // with position:fixed removes it from the flow entirely (so there's
+  // nothing left for the document to scroll), then restoring position and
+  // scrolling back to the saved offset on close makes it invisible to the
+  // user — the standard "body scroll lock" technique.
+  var lockedScrollY = 0;
+
   navDisclosure.addEventListener("toggle", function () {
-    document.body.classList.toggle("nav-open", navDisclosure.open);
+    var isOpen = navDisclosure.open;
+    document.body.classList.toggle("nav-open", isOpen);
+
+    if (isOpen) {
+      lockedScrollY = window.scrollY || window.pageYOffset;
+      document.body.style.position = "fixed";
+      document.body.style.top = "-" + lockedScrollY + "px";
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+    } else {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      window.scrollTo(0, lockedScrollY);
+    }
   });
 
   var navClose = navDisclosure.querySelector(".nav-panel__close");
